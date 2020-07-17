@@ -15,7 +15,7 @@ class AdapterExampleRecycler(private val exampleList: List<ExampleItem>,  val on
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdapterExampleViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.recycle_example_item, parent, false)
-        return AdapterExampleViewHolder(itemView, onItemClickListener)
+        return AdapterExampleViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: AdapterExampleViewHolder, position: Int) {
@@ -25,7 +25,7 @@ class AdapterExampleRecycler(private val exampleList: List<ExampleItem>,  val on
 
     override fun getItemCount() = exampleList.size
 
-    class AdapterExampleViewHolder(itemView: View, onItemClickListener: OnItemClickListener) : RecyclerView.ViewHolder(itemView) {
+   inner class AdapterExampleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         init {
             itemView.setOnClickListener {
@@ -42,6 +42,7 @@ class AdapterExampleRecycler(private val exampleList: List<ExampleItem>,  val on
                 val snack: String = "Image: $adapterPosition"
                 Snackbar.make(itemView, snack, Snackbar.LENGTH_SHORT).show()
             }
+
         }
 
         fun bind(currentItem: ExampleItem) {
